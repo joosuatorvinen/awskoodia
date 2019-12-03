@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
 */
 router.post('/', (req, res) => {
 
-    db.query('INSERT INTO loginEvent (userName, loginInOut, loginDateTime, image) VALUES (?,?)', [req.body.name, req.body.state, req.body.time, req.body.image])
+    db.query('INSERT INTO loginEvent (userName, loginInOut, loginDateTime, image) VALUES (?,?,?,?)', [req.body.name, req.body.state, req.body.time, req.body.image])
     .then(results => {
         console.log(results);
         res.sendStatus(201);

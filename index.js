@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 4000;
 const dogComponent = require('./components/dogs');
+const loginComponent = require('./components/logins');
 const bodyParser = require('body-parser');
 const apiKeyDemo = require('./components/apiKeyDemo');
 const cors = require('cors');
@@ -42,6 +43,7 @@ app.route('/world')
     .delete((req, res) => res.send('delete World'))
 
 /* demonstrate route module/component usage - the dogComponent content is defined in separate file */
+app.use('/logins', loginComponent);
 app.use('/dogs', dogComponent);
 
 app.use('/apiKey', apiKeyDemo);

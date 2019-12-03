@@ -5,7 +5,7 @@ const router = express.Router();
 //  Return all dog information 
 router.get('/', (req, res) => { 
     db.query('SELECT * FROM loginEvent').then(results => {
-        res.json(results)
+        res.json({results})
     })
     .catch(() => {
         res.sendStatus(500);
@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
 });
 
 //  Return information of a single dog 
-router.get('/:id', (req, res) => {
-    db.query('SELECT * FROM loginEvent where loginId = ?', [req.params.id])
+router.get('/:dogId', (req, res) => {
+    db.query('SELECT * FROM loginEvent where loginId = ?', [req.params.dogId])
     .then(results => {
         res.json(results);
     })

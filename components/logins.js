@@ -28,11 +28,11 @@ let userData = {
 }
 
 //  Return all dog information 
-router.get('/', (req, res) => { res.json(loginData) });
+router.get('/', (req, res) => { res.json(userData) });
 
 //  Return information of a single dog 
 router.get('/:id', (req, res) => {
-    const resultUser = loginData.logins.find(d => {
+    const resultUser = userData.logins.find(d => {
         if (d.loginId == req.params.id) {
             return true;
         }

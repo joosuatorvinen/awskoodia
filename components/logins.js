@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.get('/latest', (req, res) => {
-    db.query('SELECT * FROM loginEvent where loginId = ?', [req.params.id])
+    db.query('SELECT * FROM loginEvent ORDER BY loginId DESC LIMIT 1', [req.params.id])
     .then(results => {
         res.json(results);
     })

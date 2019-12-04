@@ -12,8 +12,28 @@ router.get('/', (req, res) => {
     })    
 });
 
+router.get('/valid', (req, res) => { 
+    db.query('SELECT * FROM loginEvent where loginInOut != "ei tunnistettu"').then(results => {
+        res.json(results)
+    })
+    .catch(() => {
+        res.sendStatus(500);
+    })    
+});
+
 //  Return information of a single dog 
 router.get('/:id', (req, res) => {
+    db.query('SELECT * FROM loginEvent where loginId = ?', [req.params.id])
+    .then(results => {
+        res.json(results);
+    })
+    .catch(error => {
+        console.error(error);
+        res.sendStatus(500);
+    });
+})
+
+router.get('/latest', (req, res) => {
     db.query('SELECT * FROM loginEvent where loginId = ?', [req.params.id])
     .then(results => {
         res.json(results);
